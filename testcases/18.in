@@ -1,0 +1,3 @@
+path <path to P1>/P1/ /usr/bin
+cd test & myls & pwd & uname
+exit

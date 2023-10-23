@@ -1,5 +1,0 @@
-echo hello world
-sleep 4
-ls & ps -u
-cat filename.ext
-echo hi > output.ext

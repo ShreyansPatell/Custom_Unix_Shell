@@ -1,0 +1,3 @@
+path /bin <path to P1>/P1
+cd test & myhello & myls
+exit
