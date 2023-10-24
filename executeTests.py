@@ -51,6 +51,12 @@ TEST_CASE_3 = "Test Case 3: Inbuilt Command in Interactive Mode -> cd"
 TEST_CASE_4 = "Test Case 4: Inbuilt Command in Batch Mode -> cd"
 TEST_CASE_5 = "Test Case 5: Inbuilt Command in Interactive Mode -> exit"
 TEST_CASE_6 = "Test Case 6: Inbuilt Command in Batch Mode -> exit"
+TEST_CASE_7 = "Test Case 7: Valid ls command in Interactive Mode"
+TEST_CASE_8 = "Test Case 8: Invalid ls commmand in Interactive Mode"
+TEST_CASE_9 = "Test Case 9: Start Batch Mode with a file that does not exist"
+TEST_CASE_10 = "Test Case 10: Start Batch Mode with two valid files"
+TEST_CASE_11 = "Test Case 11: Test echo command with variable whitespaces in Interactive Mode"
+TEST_CASE_12 = "Test Case 12: Test echo command with variable whitespaces in Batch Mode"
 
 # Global variables
 totalScore = 0
@@ -292,6 +298,174 @@ def testCase6():
         print(f"{GREEN}"+TEST_CASE_6+f" - PASSED{RESET}")
         testResults[TEST_CASE_6] = PASSED_STRING
         return TEST_CASE_POINTS
+    
+# TEST_CASE_7
+def testCase7():
+    global testResults
+    print(f"\n\n{PURPLE}"+TEST_CASE_7+f" ({TEST_CASE_POINTS} points){RESET}")
+    command = f"./tash < {TEST_CASES_PATH+'case'+'7.in'}"
+    returnCode, output, error = runCommandWithTimeout(command, timeout=10)
+
+    if returnCode == -1:
+        print(f"{RED}"+TEST_CASE_7+f" - FAILED (Time exceeded){RESET}")
+        testResults[TEST_CASE_7] = FAILED_TLE_STRING
+        return FAILURE_POINTS
+    
+    result, expectedOutput = compareOutput(output, TEST_CASES_PATH+'case'+'7.out')
+    
+    if result == 0:
+        print(f"{RED}"+TEST_CASE_7+f" - FAILED{RESET}")
+        print("Your Output:")
+        print(output)
+        print("Expected Output:")
+        print(expectedOutput)
+        testResults[TEST_CASE_7] = FAILED_STRING
+        return FAILURE_POINTS
+    
+    else:
+        print(f"{GREEN}"+TEST_CASE_7+f" - PASSED{RESET}")
+        testResults[TEST_CASE_7] = PASSED_STRING
+        return TEST_CASE_POINTS
+    
+# TEST_CASE_8
+def testCase8():
+    global testResults
+    print(f"\n\n{PURPLE}"+TEST_CASE_8+f" ({TEST_CASE_POINTS} points){RESET}")
+    command = f"./tash < {TEST_CASES_PATH+'case'+'8.in'}"
+    returnCode, output, error = runCommandWithTimeout(command, timeout=10)
+
+    if returnCode == -1:
+        print(f"{RED}"+TEST_CASE_8+f" - FAILED (Time exceeded){RESET}")
+        testResults[TEST_CASE_8] = FAILED_TLE_STRING
+        return FAILURE_POINTS
+    
+    result, expectedOutput = compareOutput(error, TEST_CASES_PATH+'case'+'8.out')
+    
+    if result == 0:
+        print(f"{RED}"+TEST_CASE_8+f" - FAILED{RESET}")
+        print("Your Output:")
+        print(output)
+        print("Expected Output:")
+        print(expectedOutput)
+        testResults[TEST_CASE_8] = FAILED_STRING
+        return FAILURE_POINTS
+    
+    else:
+        print(f"{GREEN}"+TEST_CASE_8+f" - PASSED{RESET}")
+        testResults[TEST_CASE_8] = PASSED_STRING
+        return TEST_CASE_POINTS
+    
+# TEST_CASE_9
+def testCase9():
+    global testResults
+    print(f"\n\n{PURPLE}"+TEST_CASE_9+f" ({TEST_CASE_POINTS} points){RESET}")
+    command = f"./tash {TEST_CASES_PATH+'case'+'does_not_exist.in'}"
+    returnCode, output, error = runCommandWithTimeout(command, timeout=10)
+
+    if returnCode == -1:
+        print(f"{RED}"+TEST_CASE_9+f" - FAILED (Time exceeded){RESET}")
+        testResults[TEST_CASE_9] = FAILED_TLE_STRING
+        return FAILURE_POINTS
+    
+    result, expectedOutput = compareOutput(error, TEST_CASES_PATH+'case'+'9.out')
+    
+    if result == 0:
+        print(f"{RED}"+TEST_CASE_9+f" - FAILED{RESET}")
+        print("Your Output:")
+        print(output)
+        print("Expected Output:")
+        print(expectedOutput)
+        testResults[TEST_CASE_9] = FAILED_STRING
+        return FAILURE_POINTS
+    
+    else:
+        print(f"{GREEN}"+TEST_CASE_9+f" - PASSED{RESET}")
+        testResults[TEST_CASE_9] = PASSED_STRING
+        return TEST_CASE_POINTS
+    
+# TEST_CASE_10
+def testCase10():
+    global testResults
+    print(f"\n\n{PURPLE}"+TEST_CASE_10+f" ({TEST_CASE_POINTS} points){RESET}")
+    command = f"./tash {TEST_CASES_PATH+'case'+'10.in'} {TEST_CASES_PATH+'case'+'10.in'}"
+    returnCode, output, error = runCommandWithTimeout(command, timeout=10)
+
+    if returnCode == -1:
+        print(f"{RED}"+TEST_CASE_10+f" - FAILED (Time exceeded){RESET}")
+        testResults[TEST_CASE_10] = FAILED_TLE_STRING
+        return FAILURE_POINTS
+    
+    result, expectedOutput = compareOutput(error, TEST_CASES_PATH+'case'+'10.out')
+    
+    if result == 0:
+        print(f"{RED}"+TEST_CASE_10+f" - FAILED{RESET}")
+        print("Your Output:")
+        print(output)
+        print("Expected Output:")
+        print(expectedOutput)
+        testResults[TEST_CASE_10] = FAILED_STRING
+        return FAILURE_POINTS
+    
+    else:
+        print(f"{GREEN}"+TEST_CASE_10+f" - PASSED{RESET}")
+        testResults[TEST_CASE_10] = PASSED_STRING
+        return TEST_CASE_POINTS
+
+# TEST_CASE_11
+def testCase11():
+    global testResults
+    print(f"\n\n{PURPLE}"+TEST_CASE_11+f" ({TEST_CASE_POINTS} points){RESET}")
+    command = f"./tash < {TEST_CASES_PATH+'case'+'11.in'}"
+    returnCode, output, error = runCommandWithTimeout(command, timeout=10)
+
+    if returnCode == -1:
+        print(f"{RED}"+TEST_CASE_11+f" - FAILED (Time exceeded){RESET}")
+        testResults[TEST_CASE_11] = FAILED_TLE_STRING
+        return FAILURE_POINTS
+    
+    result, expectedOutput = compareOutput(output, TEST_CASES_PATH+'case'+'11.out')
+    
+    if result == 0:
+        print(f"{RED}"+TEST_CASE_11+f" - FAILED{RESET}")
+        print("Your Output:")
+        print(output)
+        print("Expected Output:")
+        print(expectedOutput)
+        testResults[TEST_CASE_11] = FAILED_STRING
+        return FAILURE_POINTS
+    
+    else:
+        print(f"{GREEN}"+TEST_CASE_11+f" - PASSED{RESET}")
+        testResults[TEST_CASE_11] = PASSED_STRING
+        return TEST_CASE_POINTS
+    
+# TEST_CASE_12
+def testCase12():
+    global testResults
+    print(f"\n\n{PURPLE}"+TEST_CASE_12+f" ({TEST_CASE_POINTS} points){RESET}")
+    command = f"./tash {TEST_CASES_PATH+'case'+'12.in'}"
+    returnCode, output, error = runCommandWithTimeout(command, timeout=10)
+
+    if returnCode == -1:
+        print(f"{RED}"+TEST_CASE_12+f" - FAILED (Time exceeded){RESET}")
+        testResults[TEST_CASE_12] = FAILED_TLE_STRING
+        return FAILURE_POINTS
+    
+    result, expectedOutput = compareOutput(output, TEST_CASES_PATH+'case'+'12.out')
+    
+    if result == 0:
+        print(f"{RED}"+TEST_CASE_12+f" - FAILED{RESET}")
+        print("Your Output:")
+        print(output)
+        print("Expected Output:")
+        print(expectedOutput)
+        testResults[TEST_CASE_12] = FAILED_STRING
+        return FAILURE_POINTS
+    
+    else:
+        print(f"{GREEN}"+TEST_CASE_12+f" - PASSED{RESET}")
+        testResults[TEST_CASE_12] = PASSED_STRING
+        return TEST_CASE_POINTS
 
 # Main program
 # Create support folder and files
@@ -307,12 +481,18 @@ totalScore = totalScore + testCase3() # TEST_CASE_3
 totalScore = totalScore + testCase4() # TEST_CASE_4
 totalScore = totalScore + testCase5() # TEST_CASE_5
 totalScore = totalScore + testCase6() # TEST_CASE_6
+totalScore = totalScore + testCase7() # TEST_CASE_7
+totalScore = totalScore + testCase8() # TEST_CASE_8
+totalScore = totalScore + testCase9() # TEST_CASE_9
+totalScore = totalScore + testCase10() # TEST_CASE_10
+totalScore = totalScore + testCase11() # TEST_CASE_11
+totalScore = totalScore + testCase12() # TEST_CASE_12
 
 # Print test results
 printResults(totalScore)
 
 # Cleaning
-cleanUpTestFolder()
+# cleanUpTestFolder()
 
 # Close the log file when you're done
 # logFile.close()
