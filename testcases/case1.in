@@ -1,0 +1,5 @@
+path /usr/bin
+path /usr/bin/
+path random/path/
+path
+exit

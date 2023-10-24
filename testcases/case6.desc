@@ -1,0 +1,1 @@
+Test exit command with an argument (valid) and then without an argument. Should print 1 error for the invalid call. Program exits normally.

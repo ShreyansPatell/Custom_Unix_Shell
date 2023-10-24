@@ -1,0 +1,1 @@
+Test path command with valid paths, random text and no path. Output should not print any errors. Program exits normally.

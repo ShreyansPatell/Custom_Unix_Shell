@@ -1,0 +1,1 @@
+Test cd command with a valid path and an invalid path (empty). Should print 1 error for the invalid path. Program exits normally.
