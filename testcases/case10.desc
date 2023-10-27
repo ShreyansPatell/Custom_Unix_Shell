@@ -1,1 +1,1 @@
-Trying to execute Batch Mode with two files. This should not be allowed as per project requirements. case10.in is to be disregarded since it is not in use. Program should give an error.
+Trying to execute Batch Mode with multiple files. This should not be allowed as per project requirements. case10.in is to be disregarded since it is not in use. Program should give an error.
