@@ -1,0 +1,4 @@
+ls test > output &
+cat output
+rm -rf output
+exit

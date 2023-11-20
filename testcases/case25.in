@@ -1,0 +1,2 @@
+ls test & echo Hello World!
+exit

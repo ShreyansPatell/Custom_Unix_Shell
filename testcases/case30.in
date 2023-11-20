@@ -1,0 +1,4 @@
+ls test>output&echo Hello World!
+cat output
+rm -rf output
+exit
