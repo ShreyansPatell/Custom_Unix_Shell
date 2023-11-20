@@ -1,18 +1,24 @@
 import os
 import shutil
 import subprocess
-# import sys
+import sys
+from math import ceil
+
+# Optional Flags
+REDIRECT_OUTPUT_TO_LOG_FILE = False
 
 # Program Name. Update this according to the program name each semester
 PROGRAM_NAME = "tash.c"
-# LOG_FILE = "gradingLog.txt"
+LOG_FILE = "gradingLog.txt"
 
 # Open the log file for writing
-# logFile = open(LOG_FILE, 'w')
+if REDIRECT_OUTPUT_TO_LOG_FILE:
+    logFile = open(LOG_FILE, 'w')
 
 # Redirect standard output and standard error to the log file
-# sys.stdout = logFile
-# sys.stderr = logFile
+if REDIRECT_OUTPUT_TO_LOG_FILE:
+    sys.stdout = logFile
+    sys.stderr = logFile
 
 # Define ANSI color codes
 BLUE = '\033[1;34m'
@@ -25,7 +31,7 @@ RESET = '\033[0m'
 
 # Scores to assign
 TOTAL_NORMAL_TEST_CASES = 30
-MAXIMUM_TEST_CASE_POINTS = 45
+MAXIMUM_TEST_CASE_POINTS = 50
 TEST_CASE_POINTS = MAXIMUM_TEST_CASE_POINTS / TOTAL_NORMAL_TEST_CASES
 COMPILATION_POINTS = 10
 LONG_COMMAND_POINTS = 5
@@ -129,13 +135,13 @@ def printResults(totalScore):
     print(f"\n\n{BLUE}Maximum Possible Score: {maximumScore}{RESET}")
 
     if totalScore >= maximumScore - (maximumScore * 0.1):
-        print(f"{GREEN}Your Score: {totalScore}{RESET}")
+        print(f"{GREEN}Your Score (Rounded Up):", ceil(totalScore),f"{RESET}")
 
     elif totalScore >= maximumScore - (maximumScore * 0.3):
-        print(f"{YELLOW}Your Score: {totalScore}{RESET}")
+        print(f"{YELLOW}Your Score (Rounded Up):", ceil(totalScore),f"{RESET}")
 
     else:
-        print(f"{RED}Your Score: {totalScore}{RESET}")
+        print(f"{RED}Your Score (Rounded Up):", ceil(totalScore),f"{RESET}")
 
 # Testing Functions
 
@@ -1094,4 +1100,5 @@ cleanUpTestFolder()
 printResults(totalScore)
 
 # Close the log file when you're done
-# logFile.close()
+if REDIRECT_OUTPUT_TO_LOG_FILE:
+    logFile.close()
