@@ -29,7 +29,6 @@ MAXIMUM_TEST_CASE_POINTS = 45
 TEST_CASE_POINTS = MAXIMUM_TEST_CASE_POINTS / TOTAL_NORMAL_TEST_CASES
 COMPILATION_POINTS = 10
 LONG_COMMAND_POINTS = 5
-PARTIAL_POINTS = MAXIMUM_TEST_CASE_POINTS / (TOTAL_NORMAL_TEST_CASES * 2)
 FAILURE_POINTS = 0
 TEST_TIMEOUT = 10
 
@@ -77,6 +76,7 @@ TEST_CASE_27 = "Test Case 27: Test normal redirection with parallel commands wit
 TEST_CASE_28 = "Test Case 28: Test normal redirection with parallel commands with parallel symbol '&' at end in Batch Mode"
 TEST_CASE_29 = "Test Case 29: Test redirection and parallel commands without spacing between symbols in Interactive Mode"
 TEST_CASE_30 = "Test Case 30: Test redirection and parallel commands without spacing between symbols in Batch Mode"
+TEST_CASE_31 = "Test Case 31: Test long command in Batch Mode"
 
 # Global variables
 totalScore = 0
@@ -1019,6 +1019,34 @@ def testCase30():
         testResults[TEST_CASE_30] = PASSED_STRING
         return TEST_CASE_POINTS
     
+# TEST_CASE_31 (Long Test Case)
+def testCase31():
+    global testResults
+    print(f"\n\n{PURPLE}"+TEST_CASE_31+f" ({LONG_COMMAND_POINTS} points){RESET}")
+    command = f"./tash {TEST_CASES_PATH+'case'+'31.in'}"
+    returnCode, output, error = runCommandWithTimeout(command, timeout=TEST_TIMEOUT)
+
+    if returnCode == -1:
+        print(f"{RED}"+TEST_CASE_31+f" - FAILED (Time exceeded){RESET}")
+        testResults[TEST_CASE_31] = FAILED_TLE_STRING
+        return FAILURE_POINTS
+    
+    result, expectedOutput = compareOutput(output, TEST_CASES_PATH+'case'+'31.out')
+    
+    if result == 0:
+        print(f"{RED}"+TEST_CASE_31+f" - FAILED{RESET}")
+        print("Your Output:")
+        print(output)
+        print("Expected Output:")
+        print(expectedOutput)
+        testResults[TEST_CASE_31] = FAILED_STRING
+        return FAILURE_POINTS
+    
+    else:
+        print(f"{GREEN}"+TEST_CASE_31+f" - PASSED{RESET}")
+        testResults[TEST_CASE_31] = PASSED_STRING
+        return LONG_COMMAND_POINTS
+    
 # Main program
 # Create support folder and files
 createTestFolderAndFiles()
@@ -1057,6 +1085,7 @@ totalScore = totalScore + testCase27() # TEST_CASE_27
 totalScore = totalScore + testCase28() # TEST_CASE_28
 totalScore = totalScore + testCase29() # TEST_CASE_29
 totalScore = totalScore + testCase30() # TEST_CASE_30
+totalScore = totalScore + testCase31() # TEST_CASE_31
 
 # Cleaning
 cleanUpTestFolder()
