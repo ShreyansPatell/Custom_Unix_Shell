@@ -121,3 +121,7 @@ Make sure you compile your program as follows:
 gcc tash.c -o tash -Wall -Werror -O
 
 There should not be any error messages and warning during compilation.
+
+Copy testcases directory and executeTests.py to your project directory. Then, run the following command to test your program:
+
+python3 executeTests.py

@@ -6,7 +6,7 @@ import sys
 from math import ceil
 
 # Optional Flags
-REDIRECT_OUTPUT_TO_LOG_FILE = False
+REDIRECT_OUTPUT_TO_LOG_FILE = True
 
 # Program Name. Update this according to the program name each semester
 PROGRAM_NAME = "tash.c"
